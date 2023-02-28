@@ -1,16 +1,22 @@
 import { FormEvent, useState } from "react";
 
-export function Form() {
+interface Props {
+  submitSearch: (value: string) => void;
+}
+
+export function Form({ submitSearch }: Props) {
   const [city, setCity] = useState("");
 
   function handleSearchCity(event: FormEvent) {
     event.preventDefault();
     if (!city) return;
+    submitSearch(city);
   }
 
   return (
-    <form className="flex w-full max-w-sm space-x-3" action="" onSubmit={handleSearchCity}>
+    <form className="flex w-full max-w-md space-x-3 mt-5" action="" onSubmit={handleSearchCity}>
       <input
+        className="rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-600"
         type="text"
         aria-label="location"
         placeholder="Nome da cidade"
