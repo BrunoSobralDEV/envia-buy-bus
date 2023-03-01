@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: 'Roboto, sans-serif',
+        sans: 'Orbitron, sans-serif',
       },
       colors: {
         background: '#09090A'

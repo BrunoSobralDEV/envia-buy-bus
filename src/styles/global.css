@@ -5,10 +5,22 @@
 #switch:checked ~ .flip-container .flipper {
   transform: rotateY(180deg);
 }
-
 body {
   @apply bg-[#222224] text-zinc-100;
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.btn-green {
+  background:#00b63d;
+  box-shadow:0 5px 0 #003f00;
+}
+.btn-green:hover {
+  background:#003f00;
+  box-shadow:0 3px 0 #00b63d;
+}
+.btn-green:active {
+  position:absolute;
+  top:407px;
+  box-shadow:none;
 }
