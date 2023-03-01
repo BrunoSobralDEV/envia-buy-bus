@@ -55,6 +55,7 @@ export function useForecast() {
       });
       
       if(!data) throw 'error';
+
       const forecastData: ForecastTypes = {
         main: data.main,
         weather: data.weather
@@ -82,8 +83,14 @@ export function useForecast() {
   }
 
   async function getPokemons(type: string) {
-    const { data } = await pokeApi.get(`/type/${type}`);
-    return data.pokemon;
+    try {
+      const { data } = await pokeApi.get(`/type/${type}`);
+      return data.pokemon;
+    } catch (error) {
+      console.log(error);
+      setError('Cidade não encontrada. Tente novamente!')
+      setLoading(false);
+    }
   }
 
   async function getPokemonInfo(pokemon: PokemonUrl) {
@@ -113,7 +120,7 @@ export function useForecast() {
     const typeOfPokemon = await getTypeOfPokemonByTemperature(temperature, isRain);
     const pokemons = await getPokemons(typeOfPokemon);
     const pokemonInfo = await getPokemonInfo(pokemons[0].pokemon);
-console.log(pokemonInfo)
+
     setPokemon(pokemonInfo);
     setForecast(response);
     setLoading(false);

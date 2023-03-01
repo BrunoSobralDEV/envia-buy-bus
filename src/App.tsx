@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { Error } from './components/Error';
-import { Forecast } from './components/Forecast';
-import { Form } from './components/Form'
-import { LoadingGif } from './components/Loading';
+
 import { PokeCard } from './components/PokeCard/PokeCard';
-import { Search } from './components/Search';
+import { LoadingGif } from './components/Loading';
 import { useForecast } from './hooks/useForecast'
+import { Forecast } from './components/Forecast';
+import { Error } from './components/Error';
+import { Form } from './components/Form'
 import './styles/global.css';
 
 export function App() {
@@ -17,20 +17,17 @@ export function App() {
     setCity(inputValue);
   }
   
-  // function handleOnSearchChange(searchData) {
-  //   console.log(searchData);
-  // }
-
   return (
-    <div className="w-screen h-screen flex flex-col items-center ">
-      <Form submitSearch={onSubmit}/>
-      
-      <div className="w-full max-w-5xl px-6 flex flex-col gap-16 mx-auto my-5">
+    <div className="w-screen h-screen flex flex-col items-center bg-gradient-to-r from-cyan-500 to-blue-500">
+      {/* <div className='m-auto'> */}
+        <Form submitSearch={onSubmit} isLoading={isLoading}/>
+      {/* </div> */}
+    
+      <div className="w-full max-w-5xl px-6 flex flex-row items-center justify-around gap-16">
         {isLoading && <LoadingGif/>}
         {isError && <Error message={isError}/>}
         {forecast && <Forecast data={forecast} city={city}/>}
         {pokemon && <PokeCard  data={pokemon}/>}
-        {/* <Search onSearchChange={handleOnSearchChange}/> */}
       </div>
     </div>
   )
