@@ -29,7 +29,7 @@ export function useForecast() {
           appid: import.meta.env.VITE_WEATHERAPI_KEY,
         },
       });
-
+      
       if(!data) throw 'error';
       const forecastData: ForecastTypes = {
         main: data.main,
@@ -55,7 +55,7 @@ export function useForecast() {
 
     const response = await getForecastData(city);
     if(!response) return;
-    console.log(response);
+    
     setForecast(response);
     setLoading(false);
 

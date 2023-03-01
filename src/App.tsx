@@ -8,12 +8,14 @@ import { useForecast } from './hooks/useForecast'
 import './styles/global.css';
 
 export function App() {
+  const [city, setCity] = useState('');
   const {isError, isLoading, forecast, submitRequest} = useForecast();
 
-  function onSubmit(value: string) {
-    submitRequest(value);
+  function onSubmit(inputValue: string) {
+    submitRequest(inputValue);
+    setCity(inputValue);
   }
-
+  
   // function handleOnSearchChange(searchData) {
   //   console.log(searchData);
   // }
@@ -25,7 +27,7 @@ export function App() {
       <div className="w-full max-w-5xl px-6 flex flex-col gap-16 mx-auto my-5">
         {isLoading && <LoadingGif/>}
         {isError && <Error message={isError}/>}
-        {forecast && <Forecast data={forecast}/>}
+        {forecast && <Forecast data={forecast} city={city}/>}
         {/* <Search onSearchChange={handleOnSearchChange}/> */}
       </div>
     </div>
