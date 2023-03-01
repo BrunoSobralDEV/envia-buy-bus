@@ -1,7 +1,20 @@
-import { useForecast } from "../hooks/useForecast";
+import { ForecastTypes } from "../hooks/useForecast"
 
-export function Forecast() {
+interface ForecastProps {
+  data: ForecastTypes
+}
+
+export function Forecast({data}: ForecastProps) {
+  const { main, weather } = data;
+  const { temp } = main;
+  const { description, icon } = weather[0];
+  
   return(
-      <span>forecast</span>
+    <div>
+      <h1>Aracaju</h1>
+      <p>{temp}º C</p>
+      <p>{description}</p>
+      <p>{icon}</p>
+    </div>
   )
 }

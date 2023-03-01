@@ -1,36 +1,41 @@
 import { useState } from "react";
 import { weatherApi } from "../lib/api";
 
-interface Forecast {
+export interface ForecastTypes {
   main: {
-    temp: string;
-    temp_min: string;
-    temp_max: string;
-  }
+    temp: number;
+    temp_min: number;
+    temp_max: number;
+  };
   weather: {
     id: number;
     main: string;
     description: string;
     icon: string;
-  }
+  }[];
 }
 
 export function useForecast() {
   const [isError, setError] = useState<false | string>(false);
   const [isLoading, setLoading] = useState(false);
-  const [forecast, setForecast] = useState<false | Forecast>(false);
+  const [forecast, setForecast] = useState<false | ForecastTypes>(false);
 
   async function getForecastData(city: string) {
     try {
-      const response = await weatherApi.get(`/weather`, {
+      const { data } = await weatherApi.get(`/weather`, {
         params: {
           q: city,
+          units: 'metric',
           appid: import.meta.env.VITE_WEATHERAPI_KEY,
         },
       });
 
-      if(!response) throw 'error';
-      return response.data;
+      if(!data) throw 'error';
+      const forecastData: ForecastTypes = {
+        main: data.main,
+        weather: data.weather
+      }
+      return forecastData;
 
     } catch (error) {
       console.log(error)
@@ -40,8 +45,9 @@ export function useForecast() {
     }
   }
 
-  //type of pokemon
-  //pokeApi
+  // type of pokemon
+  
+  // pokeApi
 
   async function submitRequest(city: string) {
     setLoading(true);
@@ -49,6 +55,9 @@ export function useForecast() {
 
     const response = await getForecastData(city);
     if(!response) return;
+    console.log(response);
+    setForecast(response);
+    setLoading(false);
 
   }
 

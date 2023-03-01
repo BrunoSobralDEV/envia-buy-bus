@@ -25,7 +25,7 @@ export function App() {
       <div className="w-full max-w-5xl px-6 flex flex-col gap-16 mx-auto my-5">
         {isLoading && <LoadingGif/>}
         {isError && <Error message={isError}/>}
-        {forecast && <Forecast />}
+        {forecast && <Forecast data={forecast}/>}
         {/* <Search onSearchChange={handleOnSearchChange}/> */}
       </div>
     </div>
