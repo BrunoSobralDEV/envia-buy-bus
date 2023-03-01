@@ -11,12 +11,13 @@ export function Forecast({data, city}: ForecastProps) {
   const { description, icon } = weather[0];
   
   const weatherDescription = {
-    'Thunderstorm': '',
-    'Drizzle': '',
-    'Rain': '',
-    'Snow': '',
-    'Clear': '',
-    'Clouds': '',
+    'thunderstorm': '',
+    'drizzle': '',
+    'cain': '',
+    'cnow': '',
+    'clear': '',
+    'clouds': '',
+    'Scattered clouds': 'Nuvens dispersas',
     'few clouds': 'Poucas nuvens',
     'thunderstorm with light rain': 'Trovoada com chuva leve'
   }
