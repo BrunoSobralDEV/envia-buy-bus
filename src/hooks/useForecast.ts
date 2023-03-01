@@ -1,5 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
-import { weatherApi } from "../lib/api";
+import { weatherApi, pokeApi } from "../lib/api";
 
 export interface ForecastTypes {
   main: {
@@ -15,10 +16,29 @@ export interface ForecastTypes {
   }[];
 }
 
+export interface Pokemon  {
+  name: string;
+  image: string;
+  stats: {
+    base_stat: number,
+    stat: {
+      name: string;
+    }
+  }[];
+  type: [];
+}
+
+interface PokemonUrl extends Omit<Pokemon, 'image' | 'stats' | 'type'>{
+  url: string;
+}
+
+
+
 export function useForecast() {
   const [isError, setError] = useState<false | string>(false);
   const [isLoading, setLoading] = useState(false);
   const [forecast, setForecast] = useState<false | ForecastTypes>(false);
+  const [pokemon, setPokemon] = useState<false | Pokemon>(false);
 
   async function getForecastData(city: string) {
     try {
@@ -45,8 +65,7 @@ export function useForecast() {
     }
   }
 
-  // type of pokemon
-  async function getTypeOfPokemon(temperature: number, isRain: string) {
+  async function getTypeOfPokemonByTemperature(temperature: number, isRain: string) {
     if(isRain.toLocaleLowerCase().includes('rain')) return 'eletric'
     if(temperature < 5)  return 'ice';
     if(temperature >= 5 && temperature < 10)  return 'water';
@@ -58,11 +77,24 @@ export function useForecast() {
     return 'neutral'
   }
 
-  // pokeApi
-  async function getPokeData() {
-
+  async function getPokemons(type: string) {
+    const { data } = await pokeApi.get(`/type/${type}`);
+    return data.pokemon;
   }
 
+  async function getPokemonInfo(pokemon: PokemonUrl) {
+    const { data } = await axios.get(pokemon.url);
+    
+    const pokemonInfo = {
+      name: data.name,
+      image: data.sprites.other['official-artwork'].front_default,
+      stats: data.stats,
+      type: data.types
+    }
+
+    return pokemonInfo;
+  }
+  
   async function submitRequest(city: string) {
     setLoading(true);
     setError(false);
@@ -72,13 +104,15 @@ export function useForecast() {
 
     const temperature = Math.round(response.main.temp);
     const isRain = response.weather[0].description;
-    const typeOfPokemon = await getTypeOfPokemon(temperature, isRain);
-    console.log(typeOfPokemon);
-    
+    const typeOfPokemon = await getTypeOfPokemonByTemperature(temperature, isRain);
+    const pokemons = await getPokemons(typeOfPokemon);
+    const pokemonInfo = await getPokemonInfo(pokemons[0].pokemon);
+
+    setPokemon(pokemonInfo);
     setForecast(response);
     setLoading(false);
 
   }
 
-  return { isError, isLoading, forecast, submitRequest };
+  return { isError, isLoading, forecast, submitRequest, pokemon };
 }

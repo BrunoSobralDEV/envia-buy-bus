@@ -1,4 +1,5 @@
 import { ForecastTypes } from "../hooks/useForecast"
+import { toUpperCaseFirstLetter } from "../utils/formatter";
 
 interface ForecastProps {
   data: ForecastTypes;
@@ -22,9 +23,7 @@ export function Forecast({data, city}: ForecastProps) {
     'thunderstorm with light rain': 'Trovoada com chuva leve'
   }
   
-  function toUpperCaseFirstLetter(value: string) {
-    return value[0].toUpperCase() + value.substring(1);
-  }
+  
 
   function translate(word: string) {
     
