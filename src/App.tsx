@@ -20,7 +20,7 @@ export function App() {
 
   return (
     <div className="w-screen h-screen flex flex-col items-center ">
-      <Form submitSearch={onSubmit} />
+      <Form submitSearch={onSubmit}/>
       
       <div className="w-full max-w-5xl px-6 flex flex-col gap-16 mx-auto my-5">
         {isLoading && <LoadingGif/>}

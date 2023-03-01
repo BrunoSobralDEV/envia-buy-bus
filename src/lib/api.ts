@@ -5,7 +5,7 @@ export const weatherApi  = axios.create({
 })
 
 export const pokeApi = axios.create({
-  baseURL: "https://"
+  baseURL: "https://pokeapi.co/api/v2/"
 })
 
 export const geoApi = axios.create({

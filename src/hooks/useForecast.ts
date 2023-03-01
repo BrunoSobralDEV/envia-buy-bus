@@ -38,7 +38,7 @@ export function useForecast() {
       return forecastData;
 
     } catch (error) {
-      console.log(error)
+      console.clear();
       setError('Cidade não encontrada')
       setLoading(false);
       return
