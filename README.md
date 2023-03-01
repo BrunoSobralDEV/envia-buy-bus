@@ -6,5 +6,5 @@ temperatura >= 23ºC e < 27ºC  = inseto (bug).
 temperatura >= 27ºC e <= 33ºC = pedra (rock).
 temperatura > 33ºC            = fogo (fire).
 
-Para qualquer outra temperatura =  normal.
+Para qualquer outra temperatura =  normal (10,11,21,22).
 chovendo = elétrico (electric), independente da temperatura.
