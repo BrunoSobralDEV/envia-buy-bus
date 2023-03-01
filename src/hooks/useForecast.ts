@@ -69,11 +69,11 @@ export function useForecast() {
 
     const response = await getForecastData(city);
     if(!response) return;
+
     const temperature = Math.round(response.main.temp);
     const isRain = response.weather[0].description;
     const typeOfPokemon = await getTypeOfPokemon(temperature, isRain);
     console.log(typeOfPokemon);
-
     
     setForecast(response);
     setLoading(false);
