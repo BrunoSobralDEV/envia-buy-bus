@@ -12,6 +12,12 @@ export function PokeCard({data}: PokeCardProps) {
       <img src={data.image} alt="" />
       <span>{toUpperCaseFirstLetter(data.name)}</span>
 
+      <div>
+        {data.type && data.type.map((type, index) => {
+          return <span key={index} className="border mr-1">{type.type.name}</span>
+        })}
+      </div>
+
       <div className="grid grid-cols-2 px-3">
         {data.stats.map((stat, index) => {
           return (

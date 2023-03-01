@@ -25,7 +25,11 @@ export interface Pokemon  {
       name: string;
     }
   }[];
-  type: [];
+  type?: {
+    type: {
+      name: string;
+    }
+  }[];
 }
 
 interface PokemonUrl extends Omit<Pokemon, 'image' | 'stats' | 'type'>{
@@ -98,6 +102,8 @@ export function useForecast() {
   async function submitRequest(city: string) {
     setLoading(true);
     setError(false);
+    setForecast(false);
+    setPokemon(false);
 
     const response = await getForecastData(city);
     if(!response) return;
@@ -107,7 +113,7 @@ export function useForecast() {
     const typeOfPokemon = await getTypeOfPokemonByTemperature(temperature, isRain);
     const pokemons = await getPokemons(typeOfPokemon);
     const pokemonInfo = await getPokemonInfo(pokemons[0].pokemon);
-
+console.log(pokemonInfo)
     setPokemon(pokemonInfo);
     setForecast(response);
     setLoading(false);
