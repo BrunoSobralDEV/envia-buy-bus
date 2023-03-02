@@ -23,7 +23,7 @@ export function App() {
 
   return (
     <div className="w-screen h-screen flex flex-col items-center ">
-      <img className="backgroundImg blur-sm" src={pokemonsBg} alt="Pokemons" />
+      <img className={`absolute left-0 top-0 h-full object-cover opacity-80 z-[-1] ${forecast && 'blur-sm'}`} src={pokemonsBg} alt="Pokemons" />
       
       <header className='w-full flex justify-around mt-3'>
         <a href="https://openweathermap.org/api" target="_blank" className='hidden  md:block'>
@@ -35,7 +35,7 @@ export function App() {
         </a>
       </header>
     
-      <div className="w-full max-w-5xl px-6 flex flex-col items-center justify-around gap-5">
+      <div className="w-full max-w-5xl px-6 flex flex-col items-center justify-around md:gap-5">
         {isLoading && <LoadingGif/>}
         {isError && <Error message={isError}/>}
         {forecast && <Forecast data={forecast} city={city}/>}
