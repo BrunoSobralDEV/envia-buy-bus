@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import pokeballImg from '../assets/pokeball.svg';
+import pokeballImg from '../assets/pokeball.png';
 import { Loading } from "./Loading";
 
 interface Props {
@@ -32,9 +32,9 @@ export function Form({ submitSearch, isLoading }: Props) {
         disabled={isLoading}
         type="submit"
         onClick={handleSearchCity}
-        className="flex justify-center bg-red-600 hover:bg-red-700 py-2 px-4 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg disabled:opacity-75 disabled:hover:bg-red-600"
+        className="flex items-center justify-center bg-red-600 hover:bg-red-700 py-2 px-4 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg disabled:opacity-75 disabled:hover:bg-red-600"
       >
-        {isLoading ? <Loading /> :<img src={pokeballImg} alt="" />}
+        {isLoading ? <Loading /> :<img src={pokeballImg} alt="" className="h-[22px]"/>}
         
       </button>
     </form>
