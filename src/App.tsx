@@ -35,7 +35,7 @@ export function App() {
         </a>
       </header>
     
-      <div className="w-full max-w-5xl px-6 flex flex-col items-center justify-around md:gap-5">
+      <div className={`w-full ${!forecast && 'h-full'} max-w-5xl px-6 flex flex-col items-center justify-around md:gap-5`}>
         {isLoading && <LoadingGif/>}
         {isError && <Error message={isError}/>}
         {forecast && <Forecast data={forecast} city={city}/>}
