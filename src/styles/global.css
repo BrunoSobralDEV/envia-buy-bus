@@ -5,11 +5,23 @@
 #switch:checked ~ .flip-container .flipper {
   transform: rotateY(180deg);
 }
+* {
+  user-select:none;
+}
 body {
   @apply bg-[#222224] text-zinc-100;
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.backgroundImg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  z-index: -1;
 }
 .btn-green {
   background:#00b63d;

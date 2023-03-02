@@ -10,7 +10,7 @@ module.exports = {
         sans: 'Orbitron, sans-serif',
       },
       colors: {
-        background: '#09090A'
+        background: '#09090A',
       }
     },
   },

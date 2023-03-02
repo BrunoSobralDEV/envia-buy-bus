@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { weatherApi, pokeApi } from "../lib/api";
+import { getRandomNumber } from "../utils/formatter";
 
 export interface ForecastTypes {
   main: {
@@ -36,13 +37,12 @@ interface PokemonUrl extends Omit<Pokemon, 'image' | 'stats' | 'type'>{
   url: string;
 }
 
-
-
 export function useForecast() {
   const [isError, setError] = useState<false | string>(false);
   const [isLoading, setLoading] = useState(false);
   const [forecast, setForecast] = useState<false | ForecastTypes>(false);
   const [pokemon, setPokemon] = useState<false | Pokemon>(false);
+  const [typeOfPokemon, setTypeOfPokemon] = useState('');
 
   async function getForecastData(city: string) {
     try {
@@ -70,7 +70,7 @@ export function useForecast() {
     }
   }
 
-  async function getTypeOfPokemonByTemperature(temperature: number, isRain: string) {
+  function getTypeOfPokemonByTemperature(temperature: number, isRain: string) {
     if(isRain.toLocaleLowerCase().includes('rain')) return 'eletric'
     if(temperature < 5)  return 'ice';
     if(temperature >= 5 && temperature < 10)  return 'water';
@@ -117,15 +117,16 @@ export function useForecast() {
 
     const temperature = Math.round(response.main.temp);
     const isRain = response.weather[0].description;
-    const typeOfPokemon = await getTypeOfPokemonByTemperature(temperature, isRain);
+    const typeOfPokemon = getTypeOfPokemonByTemperature(temperature, isRain);
     const pokemons = await getPokemons(typeOfPokemon);
-    const pokemonInfo = await getPokemonInfo(pokemons[0].pokemon);
-
+    const pokemonInfo = await getPokemonInfo(pokemons[getRandomNumber(0,pokemons.length)].pokemon);
+    
+    setTypeOfPokemon(typeOfPokemon);
     setPokemon(pokemonInfo);
     setForecast(response);
     setLoading(false);
 
   }
 
-  return { isError, isLoading, forecast, submitRequest, pokemon };
+  return { isError, isLoading, forecast, submitRequest, pokemon, typeOfPokemon };
 }
