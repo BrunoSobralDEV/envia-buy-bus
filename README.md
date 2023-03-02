@@ -34,7 +34,7 @@ And, in the event that **it is raining** in the region, an **electric** pokémon
 
 For more details:
 
-- [Project Link](https://brunosobral.com/)
+- [Project Link](https://weather-pokeapi.vercel.app/)
 
 ---
 
