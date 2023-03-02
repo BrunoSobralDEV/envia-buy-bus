@@ -11,7 +11,7 @@ export function Loading() {
 
 export function LoadingGif() {
   return (
-    <div className="w-80 h-80 rounded-full mx-auto">
+    <div className="animationTop w-80 h-80 rounded-full mx-auto">
       <img src={evolutionGif} alt="" className="w-80 h-80 rounded-full"/>
     </div>
   )

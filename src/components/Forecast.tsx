@@ -12,7 +12,7 @@ export function Forecast({data, city}: ForecastProps) {
   const { description, icon } = weather[0];
   
   return(
-    <div className="text-3xl flex gap-5 mt-2">
+    <div className="text-3xl flex gap-5 mt-2 animationTop">
       <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="Imagem do tempo" />
       <div>
         <p className="font-bold text-7xl">{Math.round(temp)}ºC</p>

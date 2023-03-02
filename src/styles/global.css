@@ -27,3 +27,22 @@ body {
 #switch:checked ~ .flip-container .flipper {
   transform: rotateY(180deg);
 }
+.animationTop {
+  animation: slideTop .8s ease forwards;
+  animation-delay: calc(.2s * var(--i));
+}
+.animationTopDelay {
+  animation: slideTop .3s forwards;
+}
+
+@keyframes slideTop {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

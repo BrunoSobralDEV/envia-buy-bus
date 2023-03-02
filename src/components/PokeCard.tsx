@@ -23,7 +23,7 @@ export function PokeCard({data, type}: PokeCardProps) {
   const typePokemon = data.type ? data.type[data.type.length -1].type.name : 'neutral';
   
   return(
-    <div className="relative w-72">
+    <div className="relative w-72 animationTopDelay">
       <img src={pokedexImg} alt=""  className="absolute top-0"/>
 
       <input type="checkbox" id="switch" style={{display: "none"}}/>
