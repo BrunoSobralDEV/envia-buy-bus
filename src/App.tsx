@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { PokeCard } from './components/PokeCard/PokeCard';
+import { PokeCard } from './components/PokeCard';
 import { LoadingGif } from './components/Loading';
 import { useForecast } from './hooks/useForecast'
 import { Forecast } from './components/Forecast';
