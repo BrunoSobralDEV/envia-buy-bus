@@ -20,8 +20,6 @@ export function App() {
     submitRequest(inputValue);
     setCity(inputValue);
   }
-  
-  console.log('apikey:',import.meta.env.VITE_WEATHERAPI_KEY)
 
   return (
     <div className="w-screen h-screen flex flex-col items-center ">
