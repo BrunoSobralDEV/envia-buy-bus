@@ -1,6 +1,6 @@
 import { toUpperCaseFirstLetter } from "../utils/formatter";
-import { Pokemon, useForecast } from "../hooks/useForecast";
-import pokedexImg from '../../assets/pokedex.png';
+import { Pokemon } from "../hooks/useForecast";
+import pokedexImg from '../assets/pokedex.png';
 
 interface PokeCardProps {
   data: Pokemon;
